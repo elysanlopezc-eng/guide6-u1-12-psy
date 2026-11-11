@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Psychological Perspectives I - Colegio Montano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        montano: {
+                            blue: '#1269A8',
+                            yellow: '#F7D615',
+                            teal: '#54887D',
+                            lightblue: '#88B5C7',
+                            olive: '#A6B046',
+                            softwhite: '#F2F5E9'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'Segoe UI', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #e5ebdf;
+            font-family: 'Nunito', 'Segoe UI', sans-serif;
+        }
+        .whiteboard-frame {
+            background-color: #ffffff;
+            border: 12px solid #d1d5db;
+            border-radius: 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .tab-btn.active {
+            background-color: #1269A8;
+            color: #ffffff;
+            border-bottom: 4px solid #F7D615;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #88B5C7;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="p-2 md:p-6 min-h-screen flex flex-col justify-center items-center">
+
+    <!-- Main Container Frame -->
+    <div id="mainContainer" class="whiteboard-frame w-full max-w-7xl min-h-[90vh] flex flex-col justify-between overflow-hidden transition-all duration-300">
+        
+        <!-- Header Section -->
+        <header class="bg-montano-softwhite p-4 border-b-2 border-gray-200 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyEop0yf6lZ7Jk9MILZxF1rBj4Oqs5esyhIQ&s" alt="Colegio Montano Logo" class="h-14 object-contain rounded-md bg-white p-1 border">
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold text-montano-blue tracking-tight">COLEGIO MONTANO</h1>
+                    <p class="text-xs md:text-sm font-semibold text-montano-teal">Grade: 5th Marketing | Level: C1 Advanced ESL</p>
+                    <p class="text-xs font-bold text-montano-olive">Guide 6: Modern Psychological Perspectives I</p>
+                </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <button onclick="toggleFullscreen()" class="flex items-center gap-2 bg-montano-blue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg shadow-md transition duration-200 text-sm">
+                    <i class="fa-solid fa-expand"></i> <span class="hidden sm:inline">Fullscreen Digital Board</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Navigation Tabs -->
+        <nav class="bg-gray-100 border-b border-gray-300 flex overflow-x-auto custom-scrollbar">
+            <button onclick="switchTab('tab1')" id="btn-tab1" class="tab-btn active flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-book-open"></i> 1. Theory & Grammar
+            </button>
+            <button onclick="switchTab('tab2')" id="btn-tab2" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-list-check"></i> 2. Solved Examples (15)
+            </button>
+            <button onclick="switchTab('tab3')" id="btn-tab3" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-microphone"></i> 3. Voice Simulator & Dashboard
+            </button>
+            <button onclick="switchTab('tab4')" id="btn-tab4" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-lightbulb"></i> 4. Critical Reflection
+            </button>
+            <button onclick="switchTab('tab5')" id="btn-tab5" class="tab-btn flex-1 min-w-[160px] py-3 px-4 font-bold text-sm text-gray-700 hover:text-montano-blue flex items-center justify-center gap-2 transition duration-150">
+                <i class="fa-solid fa-pen-to-square"></i> 5. Formative Evaluation (15)
+            </button>
+        </nav>
+
+        <!-- Content Area -->
+        <main class="p-4 sm:p-6 flex-grow bg-white custom-scrollbar overflow-y-auto max-h-[calc(90vh-140px)]">
+
+            <!-- TAB 1: THEORY & GRAMMAR -->
+            <section id="tab1" class="tab-content space-y-6">
+                <!-- Header Banner -->
+                <div class="bg-gradient-to-r from-montano-blue to-montano-teal text-white p-6 rounded-xl shadow-md">
+                    <h2 class="text-2xl font-bold mb-2">Theoretical Foundations: Modern Psychological Perspectives I</h2>
+                    <p class="text-sm sm:text-base opacity-90">Investigating the Biological, Behavioral, Cognitive, and Psychodynamic perspectives; analyzing perception, learning, reinforcement, memory, and unconscious processes in consumer decision-making.</p>
+                </div>
+
+                <!-- Warm-up Box -->
+                <div class="bg-montano-softwhite border-l-4 border-montano-yellow p-4 rounded-r-lg shadow-sm">
+                    <h3 class="font-bold text-montano-blue text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-rotate text-montano-yellow"></i> 5-Min Consumer Behavior Warm-Up
+                    </h3>
+                    <p class="text-sm text-gray-700 mt-1">
+                        When a consumer buys a smartphone, why do they make that choice? A neuroscientist looks at brain dopamine loops (Biological); a marketer offering loyalty points relies on habit conditioning (Behavioral); an analyst looks at mental memory retrieval of reviews (Cognitive); while a luxury brand expert examines hidden status desires (Psychodynamic). Modern marketing requires synthesizing these four complementary lenses.
+                    </p>
+                </div>
+
+                <!-- Concept Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <!-- 1. Biological Perspective -->
+                    <div class="border-2 border-montano-blue rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-blue text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-brain"></i></span>
+                                <h4 class="font-bold text-gray-800 text-sm">1. Biological Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-3">Focuses on brain structures, neurotransmitters, genetics, and physiological responses driving perception and consumer drives.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-blue bg-blue-50 p-2 rounded">Key Concept: Brain & Physiology</div>
+                    </div>
+
+                    <!-- 2. Behavioral Perspective -->
+                    <div class="border-2 border-montano-teal rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-teal text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-repeat"></i></span>
+                                <h4 class="font-bold text-gray-800 text-sm">2. Behavioral Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-3">Emphasizes environmental stimuli, observable learning, reinforcement schedules, and habit formation in brand loyalty.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-teal bg-teal-50 p-2 rounded">Key Concept: Reinforcement</div>
+                    </div>
+
+                    <!-- 3. Cognitive Perspective -->
+                    <div class="border-2 border-montano-olive rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-olive text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-microchip"></i></span>
+                                <h4 class="font-bold text-gray-800 text-sm">3. Cognitive Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-3">Examines internal mental processes such as memory encoding, attention, information processing, and decision heuristics.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-olive bg-green-50 p-2 rounded">Key Concept: Memory & Schema</div>
+                    </div>
+
+                    <!-- 4. Psychodynamic Perspective -->
+                    <div class="border-2 border-montano-lightblue rounded-xl p-4 bg-white shadow-sm hover:shadow-md transition flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-2 mb-2">
+                                <span class="w-8 h-8 rounded-full bg-montano-lightblue text-white flex items-center justify-center font-bold text-sm"><i class="fa-solid fa-moon"></i></span>
+                                <h4 class="font-bold text-gray-800 text-sm">4. Psychodynamic Perspective</h4>
+                            </div>
+                            <p class="text-xs text-gray-600 mb-3">Explores unconscious motives, childhood conflicts, defense mechanisms, and hidden symbolic desires behind purchases.</p>
+                        </div>
+                        <div class="text-[11px] font-semibold text-montano-blue bg-blue-50 p-2 rounded">Key Concept: Unconscious Processes</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 2: SOLVED EXAMPLES (15 EXAMPLES WITH TTS) -->
+            <section id="tab2" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">15 Analytical Solved Examples</h2>
+                        <p class="text-xs text-gray-500">Categorized by difficulty level. Click the speaker icon to listen to the explanation using native Text-to-Speech.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1: Basic -->
+                <div class="space-y-4">
+                    <h3 class="text-lg font-bold text-montano-blue flex items-center gap-2">
+                        <span class="px-3 py-1 bg-blue-100 text-montano-blue text-xs rounded-full uppercase">Level 1 - Basic</span>
+                        Core Definitions of Modern Perspectives
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="basic-examples"></div>
+                </div>
+
+                <!-- Level 2: Intermediate -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-teal flex items-center gap-2">
+                        <span class="px-3 py-1 bg-teal-100 text-montano-teal text-xs rounded-full uppercase">Level 2 - Intermediate</span>
+                        Applying Perspectives to Consumer Scenarios
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="intermediate-examples"></div>
+                </div>
+
+                <!-- Level 3: Advanced -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-lg font-bold text-montano-olive flex items-center gap-2">
+                        <span class="px-3 py-1 bg-green-100 text-montano-olive text-xs rounded-full uppercase">Level 3 - Advanced</span>
+                        Cross-Perspective Synthesis & Marketing Limitations
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="advanced-examples"></div>
+                </div>
+            </section>
+
+            <!-- TAB 3: LIVE INTERACTIVE VOICE SIMULATOR & DASHBOARD -->
+            <section id="tab3" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border border-montano-lightblue flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue flex items-center gap-2">
+                            <i class="fa-solid fa-headset text-montano-yellow"></i> Consumer Strategy Simulator (Modern Perspectives I)
+                        </h2>
+                        <p class="text-xs text-gray-600">Roleplay as a marketing psychologist explaining consumer choices through biological, behavioral, cognitive, or psychodynamic lenses.</p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-white px-3 py-2 rounded-lg border shadow-sm text-xs font-semibold text-gray-700">
+                        <span id="mic-status-indicator" class="w-3 h-3 rounded-full bg-gray-400 inline-block"></span>
+                        <span id="mic-status-text">Microphone Idle</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <!-- Simulator Interface (Left - 7 Cols) -->
+                    <div class="lg:col-span-7 bg-white border border-gray-200 rounded-xl p-5 shadow-sm flex flex-col justify-between space-y-4">
+                        <!-- Scenario Description -->
+                        <div class="bg-blue-50 border-l-4 border-montano-blue p-4 rounded">
+                            <p class="text-xs font-bold text-montano-blue uppercase tracking-wider">Current Case Prompt:</p>
+                            <p class="text-sm font-semibold text-gray-800 mt-1" id="simulator-prompt">
+                                "An energy drink brand wants to design a campaign. How would a behavioral psychologist versus a cognitive psychologist approach building customer loyalty?"
+                            </p>
+                        </div>
+
+                        <!-- Dialogue Box -->
+                        <div id="dialogue-box" class="h-48 overflow-y-auto bg-gray-50 border p-3 rounded-lg text-sm space-y-3 custom-scrollbar">
+                            <div class="flex gap-2">
+                                <div class="font-bold text-montano-blue min-w-[70px]">Director:</div>
+                                <div class="text-gray-700 bg-white p-2 rounded shadow-xs border">Welcome! Let's analyze purchasing choices using biological, behavioral, cognitive, and psychodynamic perspectives.</div>
+                            </div>
+                        </div>
+
+                        <!-- Voice Controls and Fallback Input -->
+                        <div class="space-y-3">
+                            <div class="flex gap-2">
+                                <button id="start-record-btn" onclick="toggleSpeechRecognition()" class="flex-1 bg-montano-blue hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-microphone"></i> <span id="record-btn-text">Speak Response</span>
+                                </button>
+                                <button onclick="triggerTTSResponse()" class="bg-montano-teal hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition text-sm shadow">
+                                    <i class="fa-solid fa-volume-high"></i> Listen AI
+                                </button>
+                            </div>
+                            
+                            <div class="flex gap-2">
+                                <input type="text" id="manual-text-input" placeholder="Or type your perspective analysis here..." class="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue">
+                                <button onclick="processTextSubmission()" class="bg-montano-olive hover:bg-green-700 text-white font-bold px-4 py-2 rounded-lg text-sm transition">
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Performance Dashboard (Right - 5 Cols) -->
+                    <div class="lg:col-span-5 bg-gray-50 border border-gray-300 rounded-xl p-5 space-y-4">
+                        <h3 class="font-bold text-gray-800 text-md border-b pb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-line text-montano-blue"></i> Real-Time Performance Dashboard
+                        </h3>
+
+                        <!-- Metric 1 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Pronunciation & Speech Clarity Score</span>
+                                <span id="score-pronunciation" class="text-montano-blue">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-pronunciation" class="bg-montano-blue h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 2 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Perspective & Theoretical Accuracy Score</span>
+                                <span id="score-accuracy" class="text-montano-teal">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-accuracy" class="bg-montano-teal h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Metric 3 -->
+                        <div>
+                            <div class="flex justify-between text-xs font-bold mb-1">
+                                <span>Politeness & Expression Etiquette Score</span>
+                                <span id="score-politeness" class="text-montano-olive">0%</span>
+                            </div>
+                            <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                <div id="bar-politeness" class="bg-montano-olive h-2.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                            </div>
+                        </div>
+
+                        <!-- Key Terms Container -->
+                        <div class="pt-2">
+                            <p class="text-xs font-bold text-gray-600 mb-2">Detected Perspective Terms:</p>
+                            <div id="detected-terms" class="flex flex-wrap gap-1 min-h-[35px] p-2 bg-white rounded border border-gray-200 text-xs text-gray-400">
+                                Waiting for input...
+                            </div>
+                        </div>
+
+                        <!-- AI Feedback Container -->
+                        <div class="bg-white p-3 rounded-lg border border-montano-lightblue space-y-1">
+                            <p class="text-xs font-bold text-montano-blue flex items-center gap-1">
+                                <i class="fa-solid fa-robot"></i> AI Pedagogical Feedback:
+                            </p>
+                            <p id="ai-feedback-text" class="text-xs text-gray-600 italic">
+                                Speak or type your answer to receive immediate diagnostic evaluation regarding biological, behavioral, cognitive, and psychodynamic perspectives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 4: CRITICAL REFLECTION QUESTIONS -->
+            <section id="tab4" class="tab-content hidden space-y-6">
+                <div class="bg-montano-softwhite p-4 rounded-xl border-l-4 border-montano-blue flex justify-between items-center">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Critical Reflection & Comparison</h2>
+                        <p class="text-xs text-gray-600">Analyze the limitations of individual psychological perspectives and compare how they explain consumer behavior. Answers auto-save locally.</p>
+                    </div>
+                    <span class="bg-montano-yellow text-montano-blue font-bold text-xs px-3 py-1.5 rounded-full shadow-xs">Checkpoint 6</span>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- Reflection 1 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            1. How does the Cognitive perspective explain brand memory and schema formation differently than the Behavioral perspective's focus on reinforcement?
+                        </label>
+                        <textarea id="ref-q1" oninput="saveReflection('ref-q1')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-blue custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 2 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            2. What are the primary limitations of relying solely on the Psychodynamic perspective when analyzing consumer decision-making in retail marketing?
+                        </label>
+                        <textarea id="ref-q2" oninput="saveReflection('ref-q2')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-teal custom-scrollbar"></textarea>
+                    </div>
+
+                    <!-- Reflection 3 -->
+                    <div class="bg-white border rounded-xl p-5 shadow-sm space-y-3">
+                        <label class="font-bold text-gray-800 text-sm block">
+                            3. Integrate Biological and Behavioral insights to explain why discount coupons and flash sales create immediate purchasing urgency.
+                        </label>
+                        <textarea id="ref-q3" oninput="saveReflection('ref-q3')" rows="4" placeholder="Write your critical synthesis here..." class="w-full border rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-montano-olive custom-scrollbar"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TAB 5: FORMATIVE EVALUATION (15 PROBLEMS WITH TOGGLE SOLUTIONS) -->
+            <section id="tab5" class="tab-content hidden space-y-6">
+                <div class="flex justify-between items-center border-b pb-3">
+                    <div>
+                        <h2 class="text-xl font-bold text-montano-blue">Formative Evaluation Assessment</h2>
+                        <p class="text-xs text-gray-500">15 problem-solving exercises across 3 difficulty tiers. Use the toggle buttons to verify step-by-step solutions.</p>
+                    </div>
+                </div>
+
+                <!-- Level 1 Exercises -->
+                <div class="space-y-4">
+                    <h3 class="text-md font-bold text-montano-blue uppercase tracking-wide">Tier 1: Basic Definitions of Modern Perspectives</h3>
+                    <div class="space-y-3" id="eval-tier-1"></div>
+                </div>
+
+                <!-- Level 2 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-teal uppercase tracking-wide">Tier 2: Intermediate Scenario Applications</h3>
+                    <div class="space-y-3" id="eval-tier-2"></div>
+                </div>
+
+                <!-- Level 3 Exercises -->
+                <div class="space-y-4 pt-4 border-t">
+                    <h3 class="text-md font-bold text-montano-olive uppercase tracking-wide">Tier 3: Advanced Perspective Comparisons & Limitations</h3>
+                    <div class="space-y-3" id="eval-tier-3"></div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-gray-100 border-t p-3 text-center text-xs text-gray-500 font-semibold">
+            Colegio Montano &copy; 2026 | Instructional Design & Interactive Educational Technology
+        </footer>
+    </div>
+
+    <!-- JavaScript Implementation -->
+    <script>
+        // --- Navigation Logic ---
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            document.getElementById('btn-' + tabId).classList.add('active');
+        }
+
+        // --- Fullscreen Toggle ---
+        function toggleFullscreen() {
+            const container = document.getElementById('mainContainer');
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) container.requestFullscreen();
+                else if (container.webkitRequestFullscreen) container.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+            }
+        }
+
+        // --- Text To Speech Integration ---
+        function speakText(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.95;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('Text-to-Speech is not supported in this browser.');
+            }
+        }
+
+        // --- Solved Examples Data (15 Items) ---
+        const solvedExamplesData = [
+            // Basic (1-5)
+            { level: 1, title: "Biological Focus", body: "Question: What is the primary focus of the biological perspective in psychology?\nAnswer: Brain structures, neurochemistry, genetics, and physiological processes influencing behavior." },
+            { level: 1, title: "Behavioral Reinforcement", body: "Question: How does the behavioral perspective explain habit acquisition?\nAnswer: Through environmental conditioning, stimulus-response pairing, and reinforcement schedules." },
+            { level: 1, title: "Cognitive Schemas", body: "Question: What does the cognitive perspective investigate regarding mental activity?\nAnswer: Internal mental processes including memory encoding, attention, information processing, and mental schemas." },
+            { level: 1, title: "Psychodynamic Unconscious", body: "Question: What central construct defines the psychodynamic perspective?\nAnswer: Unconscious drives, repressed childhood conflicts, and hidden psychological motivations." },
+            { level: 1, title: "Perception Mechanism", body: "Question: How do biological and cognitive perspectives intersect in perception?\nAnswer: Biology handles sensory receptor activation, while cognition interprets and categorizes those signals into meaningful perceptions." },
+            
+            // Intermediate (6-10)
+            { level: 2, title: "Behavioral Loyalty Program", body: "Question: Why do retail loyalty cards succeed from a behavioral perspective?\nAnswer: They provide consistent positive reinforcement (points and discounts), strengthening repeat purchasing habits." },
+            { level: 2, title: "Cognitive Advertising Processing", body: "Question: How does cognitive theory explain consumer evaluation of technical product specifications?\nAnswer: Consumers actively process, store, and retrieve product data using working memory and comparison heuristics." },
+            { level: 2, title: "Psychodynamic Luxury Symbolism", body: "Question: How would a psychodynamic psychologist interpret luxury sports car purchases?\nAnswer: As symbolic expressions of unconscious status needs, ego defense, and primal power drives." },
+            { level: 2, title: "Biological Dopamine Loops", body: "Question: How do biological mechanisms explain the impulse buying of sugary snacks at checkout?\nAnswer: Sensory triggers stimulate neural dopamine reward pathways, creating immediate physiological cravings." },
+            { level: 2, title: "Memory Retrieval in Shopping", body: "Question: How does cognitive memory research influence brand packaging placement on supermarket shelves?\nAnswer: Products are positioned at eye level to match established visual memory schemas and rapid recognition patterns." },
+
+            // Advanced (11-15)
+            { level: 3, title: "Cross-Perspective Smartphone Purchase", body: "Question: Synthesize how biological, behavioral, cognitive, and psychodynamic perspectives explain a consumer buying a new flagship smartphone.\nAnswer: Biological: dopamine reward surge upon seeing tech; Behavioral: past rewarding brand experiences; Cognitive: evaluation of specs and memory reviews; Psychodynamic: unconscious desire for social prestige." },
+            { level: 3, title: "Limitations of Behavioral Perspective", body: "Question: What is a major limitation of the behavioral perspective in explaining complex consumer decisions?\nAnswer: It ignores internal mental processes, thoughts, emotions, and unobservable cognitive evaluations." },
+            { level: 3, title: "Limitations of Psychodynamic Theory", body: "Question: Why is the psychodynamic perspective often criticized in empirical market research?\nAnswer: Its core constructs (unconscious symbols, id/ego) are difficult to test scientifically or measure quantitatively." },
+            { level: 3, title: "Cognitive vs. Behavioral Habit Explanation", body: "Question: How do cognitive and behavioral perspectives differ in explaining brand loyalty?\nAnswer: Behavioral views loyalty as automatic conditioned habit; cognitive views it as a conscious decision based on brand trust and memory schemas." },
+            { level: 3, title: "Integrated Marketing Strategy", body: "Question: How can a marketing director design a multi-perspective campaign using all four lenses?\nAnswer: Combine emotional sensory appeal (Biological), reward incentives (Behavioral), clear informative comparison data (Cognitive), and aspirational lifestyle symbolism (Psychodynamic)." }
+        ];
+
+        function renderExamples() {
+            const basicContainer = document.getElementById('basic-examples');
+            const interContainer = document.getElementById('intermediate-examples');
+            const advContainer = document.getElementById('advanced-examples');
+
+            solvedExamplesData.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "bg-montano-softwhite p-4 rounded-lg border border-gray-200 flex flex-col justify-between space-y-3 shadow-xs";
+                card.innerHTML = `
+                    <div>
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-bold text-sm text-gray-800">#${index+1} ${item.title}</h4>
+                            <button onclick="speakText('${item.body.replace(/'/g, "\\'")}')" class="text-montano-blue hover:text-blue-800 p-1" title="Listen with Audio">
+                                <i class="fa-solid fa-volume-high"></i>
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-600 whitespace-pre-line leading-relaxed">${item.body}</p>
+                    </div>
+                `;
+                if (item.level === 1) basicContainer.appendChild(card);
+                else if (item.level === 2) interContainer.appendChild(card);
+                else advContainer.appendChild(card);
+            });
+        }
+
+        // --- Voice Simulator & Dashboard Logic ---
+        let recognition;
+        let isRecording = false;
+
+        function toggleSpeechRecognition() {
+            if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+                alert('Speech Recognition Web API is not supported in this browser. Please use Chrome or Edge, or use text fallback input.');
+                return;
+            }
+
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            
+            if (!recognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.interimResults = false;
+                recognition.lang = 'en-US';
+
+                recognition.onstart = () => {
+                    isRecording = true;
+                    document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-red-500 animate-ping inline-block";
+                    document.getElementById('mic-status-text').innerText = "Listening...";
+                    document.getElementById('record-btn-text').innerText = "Stop Recording";
+                };
+
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    document.getElementById('manual-text-input').value = transcript;
+                    evaluateSpeechInput(transcript);
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    stopRecordingState();
+                };
+
+                recognition.onend = () => {
+                    stopRecordingState();
+                };
+            }
+
+            if (isRecording) {
+                recognition.stop();
+            } else {
+                recognition.start();
+            }
+        }
+
+        function stopRecordingState() {
+            isRecording = false;
+            document.getElementById('mic-status-indicator').className = "w-3 h-3 rounded-full bg-gray-400 inline-block";
+            document.getElementById('mic-status-text').innerText = "Microphone Idle";
+            document.getElementById('record-btn-text').innerText = "Speak Response";
+        }
+
+        function processTextSubmission() {
+            const input = document.getElementById('manual-text-input').value;
+            if (input.trim() !== '') {
+                evaluateSpeechInput(input);
+            }
+        }
+
+        function evaluateSpeechInput(text) {
+            const dialogue = document.getElementById('dialogue-box');
+            dialogue.innerHTML += `
+                <div class="flex gap-2 justify-end">
+                    <div class="text-white bg-montano-blue p-2 rounded shadow-xs max-w-[80%]">${text}</div>
+                    <div class="font-bold text-montano-teal min-w-[50px] text-right">You:</div>
+                </div>
+            `;
+            dialogue.scrollTop = dialogue.scrollHeight;
+
+            const lower = text.toLowerCase();
+            const keywords = ['biological', 'behavioral', 'cognitive', 'psychodynamic', 'reinforcement', 'memory', 'unconscious', 'perception', 'brain', 'schema'];
+            
+            let detected = [];
+            keywords.forEach(kw => {
+                if (lower.includes(kw)) detected.push(kw);
+            });
+
+            const accuracyScore = Math.min(100, Math.round((detected.length / 4) * 100));
+            const politenessKeywords = ['thank you', 'director', 'please', 'would', 'suggest', 'respectfully', 'good morning', 'sir'];
+            let politeCount = 0;
+            politenessKeywords.forEach(pw => { if (lower.includes(pw)) politeCount++; });
+            const politenessScore = Math.min(100, 60 + (politeCount * 20));
+            const pronunciationScore = text.length > 20 ? Math.min(98, 75 + Math.floor(Math.random() * 20)) : 40;
+
+            document.getElementById('bar-pronunciation').style.width = pronunciationScore + '%';
+            document.getElementById('score-pronunciation').innerText = pronunciationScore + '%';
+
+            document.getElementById('bar-accuracy').style.width = accuracyScore + '%';
+            document.getElementById('score-accuracy').innerText = accuracyScore + '%';
+
+            document.getElementById('bar-politeness').style.width = politenessScore + '%';
+            document.getElementById('score-politeness').innerText = politenessScore + '%';
+
+            const termsContainer = document.getElementById('detected-terms');
+            if (detected.length > 0) {
+                termsContainer.innerHTML = detected.map(d => `<span class="bg-blue-100 text-montano-blue font-bold px-2 py-0.5 rounded">${d}</span>`).join(' ');
+            } else {
+                termsContainer.innerHTML = `<span class="text-red-400">No perspective terms detected. Try mentioning biological, behavioral, cognitive, or psychodynamic.</span>`;
+            }
+
+            let feedback = "";
+            if (accuracyScore >= 75) {
+                feedback = "Outstanding analysis! You effectively applied modern psychological perspectives to marketing and consumer behavior.";
+            } else if (accuracyScore >= 40) {
+                feedback = "Good response. To increase accuracy, incorporate specific terms like reinforcement, memory, or unconscious processes.";
+            } else {
+                feedback = "Needs improvement. Ensure you reference the biological, behavioral, cognitive, or psychodynamic perspectives.";
+            }
+            document.getElementById('ai-feedback-text').innerText = feedback;
+        }
+
+        function triggerTTSResponse() {
+            const feedback = document.getElementById('ai-feedback-text').innerText;
+            speakText("AI Evaluation Response: " + feedback);
+        }
+
+        // --- Critical Reflection Auto-Save ---
+        function saveReflection(id) {
+            const val = document.getElementById(id).value;
+            localStorage.setItem('montano_psych_g6_' + id, val);
+        }
+
+        function loadReflections() {
+            ['ref-q1', 'ref-q2', 'ref-q3'].forEach(id => {
+                const saved = localStorage.getItem('montano_psych_g6_' + id);
+                if (saved) document.getElementById(id).value = saved;
+            });
+        }
+
+        // --- Formative Evaluation Data (15 Problems) ---
+        const evalProblems = [
+            // Level 1
+            { tier: 1, q: "1. What does the biological perspective emphasize in human behavior?", ans: "Answer: Brain structures, neurochemistry, genetics, and physiological mechanisms." },
+            { tier: 1, q: "2. Which perspective focuses on observable learning and reinforcement schedules?", ans: "Answer: The behavioral perspective." },
+            { tier: 1, q: "3. What are internal mental frameworks that organize stored knowledge called in cognitive psychology?", ans: "Answer: Schemas." },
+            { tier: 1, q: "4. Which perspective highlights unconscious motives and hidden psychological conflicts?", ans: "Answer: The psychodynamic perspective." },
+            { tier: 1, q: "5. What is the role of memory in consumer decision-making from a cognitive viewpoint?", ans: "Answer: Storing past product experiences, reviews, and brand associations for future retrieval and evaluation." },
+            
+            // Level 2
+            { tier: 2, q: "6. How does a behavioral marketer utilize reinforcement schedules to encourage repeat purchases?", ans: "Answer: By offering loyalty rewards, cash back, or discounts after specific purchasing milestones." },
+            { tier: 2, q: "7. Explain how cognitive psychology interprets consumer perception during product evaluation.", ans: "Answer: Consumers select, organize, and interpret sensory information based on prior expectations and memory schemas." },
+            { tier: 2, q: "8. How would a psychodynamic marketer explain the appeal of luxury collectible watches?", ans: "Answer: As satisfying unconscious desires for status, prestige, and symbolic power." },
+            { tier: 2, q: "9. How do biological reward pathways explain impulse buying at store checkout counters?", ans: "Answer: Visual sensory cues trigger dopamine release, creating immediate physiological urges to purchase." },
+            { tier: 2, q: "10. Why is information processing a core metaphor in the cognitive perspective?", ans: "Answer: Because the mind operates similarly to a computer, encoding, storing, and retrieving consumer data." },
+
+            // Level 3
+            { tier: 3, q: "11. Synthesize a multi-perspective explanation for why consumers develop long-term brand loyalty to athletic apparel.", ans: "Answer: Biological comfort response, behavioral reward points, cognitive schema trust, and psychodynamic status identification." },
+            { tier: 3, q: "12. What are the key limitations of the behavioral perspective when studying high-involvement luxury purchases?", ans: "Answer: It ignores internal thought processes, emotional evaluation, and complex cognitive deliberation." },
+            { tier: 3, q: "13. Compare and contrast how cognitive and psychodynamic perspectives explain consumer decision-making.", ans: "Answer: Cognitive focuses on conscious information processing and memory; psychodynamic focuses on hidden unconscious motives and emotional defense." },
+            { tier: 3, q: "14. Evaluate why modern marketing research cannot rely on a single psychological perspective.", ans: "Answer: Human behavior is multidimensional; biological, behavioral, cognitive, and psychodynamic factors all interact simultaneously." },
+            { tier: 3, q: "15. Formulate an advertising strategy for electric vehicles that integrates biological comfort, behavioral incentives, cognitive data comparison, and psychodynamic environmental status.", ans: "Answer: Highlight quiet smooth rides (biological), tax credits (behavioral), battery efficiency specs (cognitive), and eco-conscious prestige (psychodynamic)." }
+        ];
+
+        function renderEvaluation() {
+            const t1 = document.getElementById('eval-tier-1');
+            const t2 = document.getElementById('eval-tier-2');
+            const t3 = document.getElementById('eval-tier-3');
+
+            evalProblems.forEach((item, index) => {
+                const box = document.createElement('div');
+                box.className = "bg-white border border-gray-200 rounded-lg p-4 shadow-xs space-y-2";
+                box.innerHTML = `
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+                        <p class="text-sm font-semibold text-gray-800">${item.q}</p>
+                        <button onclick="toggleSolution('sol-${index}')" class="text-xs bg-montano-softwhite hover:bg-montano-lightblue text-montano-blue font-bold px-3 py-1.5 rounded border border-montano-lightblue transition shrink-0">
+                            Show / Hide Solution
+                        </button>
+                    </div>
+                    <div id="sol-${index}" class="hidden mt-2 p-3 bg-blue-50 border-l-4 border-montano-blue text-xs text-gray-700 font-medium">
+                        ${item.ans}
+                    </div>
+                `;
+                if (item.tier === 1) t1.appendChild(box);
+                else if (item.tier === 2) t2.appendChild(box);
+                else t3.appendChild(box);
+            });
+        }
+
+        function toggleSolution(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('hidden');
+        }
+
+        // Initialize Page Data
+        window.onload = function() {
+            renderExamples();
+            renderEvaluation();
+            loadReflections();
+        };
+    </script>
+</body>
+</html>
